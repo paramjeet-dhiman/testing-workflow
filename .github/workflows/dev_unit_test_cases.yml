@@ -29,11 +29,13 @@ jobs:
         run: npm run build
 
       - name: Remove existing ZIP files
-        run: rm -f *.zip
+        run: rm -f production-build.zip
 
       - name: Create production-build.zip
         run: |
-          zip -r production-build.zip dist
+          cd dist
+          zip -r ../production-build.zip .
+          cd ..
 
       - name: Upload production-build.zip
         if: always()
