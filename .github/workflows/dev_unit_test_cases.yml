@@ -31,15 +31,12 @@ jobs:
       - name: Remove existing ZIP files
         run: rm -f production-build.zip
 
-      - name: Move dist contents to root
-        run: |
-          mkdir temp
-          mv dist/* temp/
-          mv temp/* ./
-          rmdir temp
-
       - name: Create production-build.zip
-        run: zip -r production-build.zip *
+        run: |
+          # Create the ZIP file directly from the contents of the dist directory
+          cd dist
+          zip -r ../production-build.zip . 
+          cd ..
 
       - name: Upload production-build.zip
         if: always()
