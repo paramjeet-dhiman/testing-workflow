@@ -35,7 +35,7 @@ jobs:
         run: |
           # Create the ZIP file from within the dist directory
           cd dist
-          zip -r ../production-build.zip .
+          zip -r ../ .
           cd ..
 
       - name: Verify ZIP contents
