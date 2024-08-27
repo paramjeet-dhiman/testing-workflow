@@ -28,10 +28,8 @@ jobs:
       - name: Build the project
         run: npm run build
 
-      - name: Debug: List directory contents
+      - name: Debug:List directory contents
         run: ls -la
-        # Optional: You can also list the contents of the "build" directory to see what's inside:
-        # run: ls -la build/
 
       - name: Verify build directory exists
         run: |
