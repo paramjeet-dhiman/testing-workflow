@@ -33,12 +33,8 @@ jobs:
 
       - name: Create production-build.zip
         run: |
-          # Navigate to the dist directory
-          cd dist
-          # Create the ZIP file in the parent directory without including the dist directory itself
-          zip -r ../production-build.zip . 
-          # Return to the root directory
-          cd ..
+          # Create the ZIP file from within the dist directory without including the dist directory itself
+          zip -r production-build.zip dist/* -x "dist/*/"
 
       - name: Verify ZIP contents
         run: |
