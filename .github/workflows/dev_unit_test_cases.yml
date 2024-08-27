@@ -28,10 +28,15 @@ jobs:
       - name: Build the project
         run: npm run build
 
-      - name: Create build artifact ZIP
+      - name: Verify build directory exists
         run: |
-          zip -r build-artifact.zip ./build
-        working-directory: ${{ github.workspace }} # Ensure the command runs in the root directory
+          if [ ! -d "build" ]; then
+            echo "Build directory not found!"
+            exit 1
+          fi
+
+      - name: Create build artifact ZIP
+        run: zip -r build-artifact.zip build/
 
       - name: Upload build artifact ZIP
         if: always()
