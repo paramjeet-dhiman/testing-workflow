@@ -31,19 +31,14 @@ jobs:
       - name: Debug:List directory contents
         run: ls -la
 
-      - name: Verify dist directory exists
+      - name: Create production-build ZIP
         run: |
-          if [ ! -d "dist" ]; then
-            echo "Dist directory not found!"
-            exit 1
-          fi
+          cd dist
+          zip -r ../production-build.zip .
 
-      - name: Create build artifact ZIP
-        run: zip -r build-artifact.zip dist/
-
-      - name: Upload build artifact ZIP
+      - name: Upload production-build ZIP
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: production-build
-          path: build-artifact.zip
+          path: production-build.zip
