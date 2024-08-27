@@ -31,15 +31,15 @@ jobs:
       - name: Debug:List directory contents
         run: ls -la
 
-      - name: Verify build directory exists
+      - name: Verify dist directory exists
         run: |
-          if [ ! -d "build" ]; then
-            echo "Build directory not found!"
+          if [ ! -d "dist" ]; then
+            echo "Dist directory not found!"
             exit 1
           fi
 
       - name: Create build artifact ZIP
-        run: zip -r build-artifact.zip build/
+        run: zip -r build-artifact.zip dist/
 
       - name: Upload build artifact ZIP
         if: always()
