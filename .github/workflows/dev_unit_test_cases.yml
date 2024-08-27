@@ -31,10 +31,12 @@ jobs:
       - name: Remove existing ZIP files
         run: rm -f production-build.zip
 
-      - name: Create production-build.zip
+      - name: Prepare files for ZIP
         run: |
-          cd dist
-          zip -r ../production-build.zip . -x "*/.*"
+          mkdir temp
+          cp -r dist/* temp/
+          cd temp
+          zip -r ../production-build.zip .
           cd ..
 
       - name: Upload production-build.zip
