@@ -28,15 +28,15 @@ jobs:
       - name: Build the project
         run: npm run build
 
-      - name: Debug:List directory contents
-        run: ls -la
-
-      - name: Create production-build ZIP
+      - name: Create a production-build directory and move files
         run: |
-          cd dist
-          zip -r ../production-build.zip .
+          mkdir production-build
+          cp -r dist/* production-build/
 
-      - name: Upload production-build ZIP
+      - name: Create production-build.zip
+        run: zip -r production-build.zip production-build/
+
+      - name: Upload production-build.zip
         if: always()
         uses: actions/upload-artifact@v4
         with:
