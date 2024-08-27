@@ -28,13 +28,10 @@ jobs:
       - name: Build the project
         run: npm run build
 
-      - name: Create a production-build directory and move files
-        run: |
-          mkdir production-build
-          cp -r dist/* production-build/
-
       - name: Create production-build.zip
-        run: zip -r production-build.zip production-build/
+        run: |
+          cd dist
+          zip -r ../production-build.zip .
 
       - name: Upload production-build.zip
         if: always()
