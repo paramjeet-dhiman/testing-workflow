@@ -33,8 +33,14 @@ jobs:
 
       - name: Create production-build.zip
         run: |
-          # Create the ZIP file from within the dist directory without including the dist directory itself
-          zip -r production-build.zip dist/* -x "dist/*/"
+          # Create a temporary directory to hold the contents of dist
+          mkdir temp
+          # Copy the contents of dist to the temporary directory
+          cp -r dist/* temp/
+          # Create the ZIP file from the temporary directory
+          zip -r production-build.zip temp/*
+          # Clean up the temporary directory
+          rm -rf temp
 
       - name: Verify ZIP contents
         run: |
