@@ -35,14 +35,8 @@ jobs:
         run: |
           # Create the ZIP file from within the dist directory
           cd dist
-          zip -r ../ .
+          zip -r ../../production-build.zip .
           cd ..
-
-      - name: Verify ZIP contents
-        run: |
-          # List contents of the ZIP file for verification
-          unzip -l production-build.zip
-
       - name: Upload production-build.zip
         if: always()
         uses: actions/upload-artifact@v4
