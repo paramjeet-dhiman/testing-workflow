@@ -40,6 +40,11 @@ jobs:
           # Return to the root directory
           cd ..
 
+      - name: Verify ZIP contents
+        run: |
+          # List contents of the ZIP file for verification
+          unzip -l production-build.zip
+
       - name: Upload production-build.zip
         if: always()
         uses: actions/upload-artifact@v4
