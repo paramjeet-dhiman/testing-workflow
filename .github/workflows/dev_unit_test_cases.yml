@@ -33,10 +33,14 @@ jobs:
 
       - name: Create production-build.zip
         run: |
-          # Create the ZIP file directly from the contents of the dist directory
-          cd dist
-          zip -r ../production-build.zip . 
-          cd ..
+          # Create a temporary directory for files to zip
+          mkdir temp
+          # Move contents of dist to the temporary directory
+          mv dist/* temp/
+          # Create the ZIP file from the temporary directory contents
+          zip -r production-build.zip temp/*
+          # Clean up the temporary directory
+          rm -rf temp
 
       - name: Upload production-build.zip
         if: always()
